@@ -27,16 +27,19 @@ const job = schedule.scheduleJob('0 0 * * *', function () {
 });
 
 
-router.post("/SaveServicesList", (req, res, next) => {
-    db.executeSql("INSERT INTO `serviceslist`(`name`, `price`, `time`, `point`, `isactive`, `createdate`,`epoint`)VALUES('" + req.body.name + "'," + req.body.price + "," + req.body.time + "," + req.body.point + ",true,CURRENT_TIMESTAMP," + req.body.epoint + ");", function (data, err) {
+router.post("/SaveWebNavbar", (req, res, next) => {
+    console.log(req.body);
+    db.executeSql("INSERT INTO `web_navbar`(`email`, `contact`, `name`, `color`, `isactive`, `createddate`)VALUES('" + req.body.email + "','" + req.body.contact + "','" + req.body.name + "','" + req.body.color + "',true,CURRENT_TIMESTAMP);", function (data, err) {
         if (err) {
-            res.json("error");
+            res.json(err);
         } else {
 
             return res.json(data);
         }
     });
 });
+
+
 router.post("/SaveSalaryList", (req, res, next) => {
     db.executeSql("INSERT INTO `salary`(`salary`, `desc`, `paiddate`, `empid`)VALUES(" + req.body.salary + " , '" + req.body.desc + "' , '" + req.body.paiddate + "' ," + req.body.empid + ");", function (data, err) {
         if (err) {
