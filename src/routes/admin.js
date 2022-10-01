@@ -38,6 +38,16 @@ router.post("/SaveWebNavbar", (req, res, next) => {
         }
     });
 });
+router.get("/GetWebNavbar", (req, res, next) => {
+    console.log(req.body,'jgvucvuvu')
+    db.executeSql("select * from web_navbar", function (data, err) {
+        if (err) {
+            console.log(err);
+        } else {
+            return res.json(data);
+        }
+    })
+});
 
 
 router.post("/SaveSalaryList", (req, res, next) => {
@@ -51,15 +61,7 @@ router.post("/SaveSalaryList", (req, res, next) => {
     });
 });
 
-router.get("/GetAllServices", (req, res, next) => {
-    db.executeSql("select * from serviceslist", function (data, err) {
-        if (err) {
-            console.log(err);
-        } else {
-            return res.json(data);
-        }
-    })
-});
+
 
 
 router.post("/UpdateServicesList", (req, res, next) => {
