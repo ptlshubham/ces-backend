@@ -78,6 +78,27 @@ router.post("/GetWebFooter", (req, res, next) => {
         }
     });
 })
+
+router.post("/UpdateActiveWebBanners", (req, res, next) => {
+    console.log(req.body)
+    db.executeSql("UPDATE `web_home_image` SET isactive=" + req.body.isactive + " WHERE id=" + req.body.id + ";", function (data, err) {
+        if (err) {
+            console.log("Error in store.js", err);
+        } else {
+            return res.json(data);
+        }
+    });
+});
+router.post("/RemoveWebBanners", (req, res, next) => {
+    console.log(req.id)
+    db.executeSql("Delete from web_home_image where id=" + req.body.id, function (data, err) {
+        if (err) {
+            console.log("Error in store.js", err);
+        } else {
+            return res.json(data);
+        }
+    });
+});
 router.post("/SaveWebSliderImage", (req, res, next) => {
 
     var imgname = generateUUID();
