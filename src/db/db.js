@@ -8,9 +8,10 @@ var con = mysql.createConnection({
     database: "ces"
 });
 exports.executeSql = function (sql, callback) {
+    // console.log(sql)
     con.query(sql, function (err, result) {
         if (err) {
-            // throw err;
+           console.log(err)
             callback(null, err);
         }
         else {
